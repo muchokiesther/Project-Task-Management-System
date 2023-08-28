@@ -1,18 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Project_management_system.Data;
+using project_management.Data;
 using Project_management_system.Helpers;
 using Project_management_system.Models;
 using Project_management_system.Services;
-using System.Threading.Channels;
 
 namespace Project_management_system.Controller
 {
     public class UserController
     {
-       ApplicationDbContext _context = new ApplicationDbContext();
+        ApplicationDbContext _context = new ApplicationDbContext();
         UserServices userServices = new UserServices();
-     
-        public static async  Task Initialize()
+
+        public static async Task Initialize()
         {
             await Console.Out.WriteLineAsync("\t\t\tProject Management System\n\n");
             await Console.Out.WriteLineAsync("Select options to continue\n 1.Login\n2.Register");
@@ -24,10 +23,10 @@ namespace Project_management_system.Controller
                 var username = Console.ReadLine();
                 await Console.Out.WriteLineAsync("Password");
                 var password = Console.ReadLine();
-                await new UserController().Login(username,password);
+                await new UserController().Login(username, password);
 
             }
-            else if(Option && Input == 2)
+            else if (Option && Input == 2)
             {
                 await Console.Out.WriteLineAsync("Username:");
                 var username = Console.ReadLine();
@@ -45,10 +44,10 @@ namespace Project_management_system.Controller
 
 
         }
-        public async Task RegisterUser(string username,string password,string confirmpwd)
+        public async Task RegisterUser(string username, string password, string confirmpwd)
         {
-           //registering a user 
-            bool validated = Validatedetails.userDetails(username, 
+            //registering a user 
+            bool validated = Validatedetails.userDetails(username,
                 password, confirmpwd); //validating the user inpuit
             if (validated)
             {
@@ -59,40 +58,40 @@ namespace Project_management_system.Controller
                     {
                         username = username,
                         password = password,
-                        Role=Roles.User,
+                        Role = Roles.User,
                     };
-                   await userServices.RegisterUserAsync(newUser);
-                  
+                    await userServices.RegisterUserAsync(newUser);
+
                 }
                 catch (Exception ex)
                 {
                     await Console.Out.WriteLineAsync(ex.Message);
                 }
             }
-           
+
         }
 
         public async Task DeleteUser(int userId)
         {
             var userToDelete = await userServices.GetUserById(userId);
-            
-            
+
+
             if (userToDelete != null)
             {
-                    await userServices.UnregisterUserAsync(userToDelete);
+                await userServices.UnregisterUserAsync(userToDelete);
 
             }
             else
             {
                 await Console.Out.WriteLineAsync("User was not found");
             }
-           
+
         }
 
         public async Task DisplayAllUsers()
         {
             List<User> AllUsers = await userServices.GetAllUsers();
-            if(AllUsers != null)
+            if (AllUsers != null)
             {
                 foreach (var user in AllUsers)
                 {
@@ -103,11 +102,11 @@ namespace Project_management_system.Controller
 
         public async Task Login(string username, string password)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u=>u.username == username && u.password==password);
-            if(user != null)
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.username == username && u.password == password);
+            if (user != null)
             {
                 bool IsAdmin = Validatedetails.IsUserAdmin(user);
-                 if(IsAdmin)
+                if (IsAdmin)
                 {
                     Console.WriteLine($"Welcome {user.Role} name: {user.username}");
                 }
@@ -115,7 +114,7 @@ namespace Project_management_system.Controller
                 {
                     await Console.Out.WriteLineAsync($"Welcome {user.Role} name: {user.username}");
                 }
-                
+
             }
             else
             {
