@@ -3,9 +3,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Project_management_system.Models
 {
-    public enum Roles{
-        Admin=1,
-        User=2
+    public enum Roles
+    {
+        Admin = 1,
+        User = 2
     }
     public class User
     {
@@ -17,9 +18,8 @@ namespace Project_management_system.Models
         public string password { get; set; } = string.Empty;
         public Roles Role { get; set; }
 
-       // [ForeignKey("TaskId")]
-       // public int TaskId { get; set; }
-       // public Task? Task { get; set; }
+        public ICollection<ProjectTasks> Assignedtasks { get; set; }
+
 
 
     }
