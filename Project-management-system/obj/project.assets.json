@@ -3510,24 +3510,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DERIYUT\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\USERE\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Ken's\\Project-Management-Project\\Project-management-system\\Project-management-system.csproj",
+      "projectUniqueName": "C:\\Users\\USERE\\Documents\\Projects\\project1\\Project-management-system\\Project-management-system.csproj",
       "projectName": "Project-management-system",
-      "projectPath": "D:\\Ken's\\Project-Management-Project\\Project-management-system\\Project-management-system.csproj",
-      "packagesPath": "C:\\Users\\DERIYUT\\.nuget\\packages\\",
-      "outputPath": "D:\\Ken's\\Project-Management-Project\\Project-management-system\\obj\\",
+      "projectPath": "C:\\Users\\USERE\\Documents\\Projects\\project1\\Project-management-system\\Project-management-system.csproj",
+      "packagesPath": "C:\\Users\\USERE\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\USERE\\Documents\\Projects\\project1\\Project-management-system\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\DERIYUT\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\USERE\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
