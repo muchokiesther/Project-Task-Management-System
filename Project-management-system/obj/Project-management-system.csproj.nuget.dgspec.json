@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\USERE\\Documents\\Projects\\project1\\Project-management-system\\Project-management-system.csproj": {}
+    "C:\\Users\\USERE\\Documents\\Projects\\test\\Project-Task-Management-System\\Project-management-system\\Project-management-system.csproj": {}
   },
   "projects": {
-    "C:\\Users\\USERE\\Documents\\Projects\\project1\\Project-management-system\\Project-management-system.csproj": {
+    "C:\\Users\\USERE\\Documents\\Projects\\test\\Project-Task-Management-System\\Project-management-system\\Project-management-system.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\USERE\\Documents\\Projects\\project1\\Project-management-system\\Project-management-system.csproj",
+        "projectUniqueName": "C:\\Users\\USERE\\Documents\\Projects\\test\\Project-Task-Management-System\\Project-management-system\\Project-management-system.csproj",
         "projectName": "Project-management-system",
-        "projectPath": "C:\\Users\\USERE\\Documents\\Projects\\project1\\Project-management-system\\Project-management-system.csproj",
+        "projectPath": "C:\\Users\\USERE\\Documents\\Projects\\test\\Project-Task-Management-System\\Project-management-system\\Project-management-system.csproj",
         "packagesPath": "C:\\Users\\USERE\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\USERE\\Documents\\Projects\\project1\\Project-management-system\\obj\\",
+        "outputPath": "C:\\Users\\USERE\\Documents\\Projects\\test\\Project-Task-Management-System\\Project-management-system\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\USERE\\AppData\\Roaming\\NuGet\\NuGet.Config",

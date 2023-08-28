@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YbdK1iSIbyN30xC1Q7H4rFB/LfrMzKvf51r73I467lrU673N5snugbUKnpjtdCQt8ErmzW1kqaNqODoL2L2emQ==",
+  "dgSpecHash": "bJ2uP0wMkurhzcj5Ya3Q0ySKxARcDM1uPTagTBjc0+Q0AV+ao6/hWsEVpSTgrEktCkfMhCx5SFGpCxdwMubmKA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\USERE\\Documents\\Projects\\project1\\Project-management-system\\Project-management-system.csproj",
+  "projectFilePath": "C:\\Users\\USERE\\Documents\\Projects\\test\\Project-Task-Management-System\\Project-management-system\\Project-management-system.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\USERE\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\USERE\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
