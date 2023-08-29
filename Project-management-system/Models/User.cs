@@ -1,0 +1,26 @@
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Project_management_system.Models
+{
+    public enum Roles
+    {
+        Admin = 1,
+        User = 2
+    }
+    public class User
+    {
+        [Key]
+        public int Id { get; set; }
+        [Required]
+        public string username { get; set; } = string.Empty;
+        [Required]
+        public string password { get; set; } = string.Empty;
+        public Roles Role { get; set; }
+
+        public ICollection<ProjectTasks> Assignedtasks { get; set; }
+
+
+
+    }
+}
