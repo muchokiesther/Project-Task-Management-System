@@ -37,12 +37,7 @@ namespace project_management.Services
             return projects;
         }
 
-        public async Task<List<ProjectTasks>> GetAllTasksAsync()
-        {
-
-
-            throw new NotImplementedException();
-        }
+     
 
         public async Task<SuccessMessage> UpdateProjectAsync(Project updatedProject, int id)
         {
@@ -88,6 +83,23 @@ namespace project_management.Services
                 return new SuccessMessage { Message = ex.Message };
             }
 
+        }
+
+       public async Task<SuccessMessage> MarkTaskAsCompleted(ProjectTasks updatedTask, int id)
+        {
+            try
+            {
+                var TaskToUpdate = await _context.Tasks.FirstAsync(x => x.TaskId == id);
+                TaskToUpdate.Status = updatedTask.Status;
+                await _context.SaveChangesAsync();
+                return new SuccessMessage { Message = "Task is Completed" };
+            }
+            catch(Exception ex)
+            {
+                return new SuccessMessage { Message = ex.Message };
+            }
+           
+           
         }
     }
 }

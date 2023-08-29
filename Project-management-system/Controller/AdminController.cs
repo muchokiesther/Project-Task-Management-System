@@ -14,7 +14,7 @@ namespace Project_management_system.Contoller
         public async static Task AdminPanel()
         {
             await Console.Out.WriteLineAsync("Select An Option: \n 1.View Projects\n 2.Create Project\n 3.Update Project\n 4." +
-                "Delete Project\n 5. Delete User\n 6. Create new Tasks");
+                "Delete Project\n 5. Delete User\n 6. Create new Tasks\n 7. Exit");
             var option = Console.ReadLine();
             bool convertedOption = int.TryParse(option, out int Option);
             if (convertedOption)
@@ -48,6 +48,9 @@ namespace Project_management_system.Contoller
                 case 6:
                     await new AdminController().CreateNewTask();
                     break;
+                case 7:
+                    await Console.Out.WriteLineAsync("Exiting ....");
+                    return;
                 default:
                     await AdminPanel();
                     break;
@@ -63,6 +66,7 @@ namespace Project_management_system.Contoller
             };
           var response =  await services.AddProjectAsync(newProject);
              Console.WriteLine(response.Message);
+            await AdminPanel();
         }
         //update project
         public async Task UpdateProject()
@@ -79,7 +83,9 @@ namespace Project_management_system.Contoller
 
             };
 
-            await services.UpdateProjectAsync(updatedP, projectId);
+            var res = await services.UpdateProjectAsync(updatedP, projectId);
+            await Console.Out.WriteLineAsync(res.Message);
+            await AdminPanel();
 
         }
         //get all projects
@@ -94,6 +100,7 @@ namespace Project_management_system.Contoller
                     await Console.Out.WriteLineAsync($"{task.ProjectId} . {task.TaskName}");
                 }
             }
+           
         }
         //Add a task for a certain project
         public async Task CreateNewTask()
@@ -105,7 +112,7 @@ namespace Project_management_system.Contoller
             await Console.Out.WriteLineAsync("Task name:");
             var name = Console.ReadLine();
             await Console.Out.WriteLineAsync("Select User To Assign Task:");
-            await GetUsersWithouTasks();
+            await GetUsersLessTasks();
             await Console.Out.WriteLineAsync("Enter user Id To select");
             var Uid = Console.ReadLine();
             int UserId = int.Parse(Uid);
@@ -118,7 +125,9 @@ namespace Project_management_system.Contoller
                     ProjectId = ProjectId,
                     userId=UserId,
                 };
-                await services.AddTaskAsync(newTask);
+              var res =  await services.AddTaskAsync(newTask);
+                await Console.Out.WriteLineAsync(res.Message);
+                await AdminPanel();
             }
 
 
@@ -131,18 +140,33 @@ namespace Project_management_system.Contoller
             Console.WriteLine("Type in project ID to Delete project");
             var pid = Console.ReadLine();
             int ProjectId = int.Parse(pid);
-            await services.DeleteProjectAsync(ProjectId);
+          var res =  await services.DeleteProjectAsync(ProjectId);
+            await Console.Out.WriteLineAsync(res.Message);
 
         }
         //get all users withous Tasks
-        public async Task GetUsersWithouTasks()
+        public async Task GetUsersLessTasks()
         {
-            var usersWithoutTasks = await _context.Users.Where(u => u.Assignedtasks.Count == 0).ToListAsync();
+            var usersWithoutTasks = await _context.Users.Where(u => u.Assignedtasks.Count < 6).ToListAsync();
 
             foreach(var user in usersWithoutTasks)
             {
                 await Console.Out.WriteLineAsync($"{user.Id}. {user.username}");
+               
             }
+
+        }
+        //Mark project as Completed
+        public async Task CompleteProject(int TaskId)
+        {
+            var CompletedTask= new ProjectTasks()
+            {
+                Status = Status.Complete
+
+            };
+
+         var res =   await services.MarkTaskAsCompleted(CompletedTask, TaskId);
+            await Console.Out.WriteLineAsync(res.Message);
 
         }
 

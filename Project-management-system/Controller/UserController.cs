@@ -67,6 +67,7 @@ namespace Project_management_system.Controller
                 catch (Exception ex)
                 {
                     await Console.Out.WriteLineAsync(ex.Message);
+                    await Initialize();
                 }
             }
 
@@ -77,7 +78,7 @@ namespace Project_management_system.Controller
             var userTasks = await _context.Tasks.Where(u => u.userId == userId).ToListAsync();
             foreach(var userTask in userTasks)
             {
-                await Console.Out.WriteLineAsync($"{userTask.TaskId}. {userTask.TaskName}");
+                await Console.Out.WriteLineAsync($"{userTask.TaskId}. {userTask.TaskName} status:{userTask.Status}");
             }
 
         }
@@ -99,6 +100,7 @@ namespace Project_management_system.Controller
             else
             {
                 await Console.Out.WriteLineAsync("User was not found");
+                await DeleteUser();
             }
 
         }
@@ -123,12 +125,12 @@ namespace Project_management_system.Controller
                 bool IsAdmin = Validatedetails.IsUserAdmin(user);
                 if (IsAdmin)
                 {
-                    Console.WriteLine($"Welcome {user.Role} name: {user.username}");
+                    Console.WriteLine($"Welcome {user.Role}  {user.username}");
                     await AdminController.AdminPanel();
                 }
                 else
                 {
-                    await Console.Out.WriteLineAsync($"Welcome {user.Role} name: {user.username}");
+                    await Console.Out.WriteLineAsync($"Welcome  {user.username}");
                     await UserPanel(user.Id);
                 }
 
@@ -136,6 +138,7 @@ namespace Project_management_system.Controller
             else
             {
                 await Console.Out.WriteLineAsync("details did not match");
+                await Initialize();
             }
         }
         public async static Task UserPanel(int id)
@@ -145,9 +148,8 @@ namespace Project_management_system.Controller
             await Console.Out.WriteLineAsync("Enter Task Id");
             var Id = Console.ReadLine();
             int TaskId = int.Parse(Id);
-            Console.WriteLine($"Task with Id of {id} Has been Completed");
-
-
+            await new AdminController().CompleteProject(TaskId);
+            await new UserController().GetAllUserTasks(id);
 
         }
 
